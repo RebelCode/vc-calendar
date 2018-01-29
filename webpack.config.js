@@ -31,7 +31,7 @@ let entries = {
         }
     },
     'default': {
-        entry: "./tests/e2e/app.js",
+        entry: "./src/index.js",
         output: {
             path: __dirname + "/dist",
             filename: "lib.min.js",

@@ -33,9 +33,9 @@ let entries = {
     'default': {
         entry: "./tests/e2e/app.js",
         output: {
-            path: __dirname + "/build/js",
-            filename: "app.min.js",
-            libraryTarget: 'umd'
+            path: __dirname + "/dist",
+            filename: "lib.min.js",
+            libraryTarget: 'amd'
         },
         resolve: {
             alias: {

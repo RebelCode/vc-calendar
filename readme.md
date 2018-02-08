@@ -1,4 +1,6 @@
 # Calendar Component
+[![npm (scoped)](https://img.shields.io/npm/v/@rebelcode/vc-calendar.svg)]()
+  
 [Full Calendar](https://fullcalendar.io) Vue wrapper.
 
 ## Usage

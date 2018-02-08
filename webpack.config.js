@@ -34,8 +34,8 @@ let entries = {
         entry: "./src/index.js",
         output: {
             path: __dirname + "/dist",
-            filename: "lib.min.js",
-            libraryTarget: 'amd'
+            filename: "vc-calender.js",
+            libraryTarget: 'umd'
         },
         resolve: {
             alias: {

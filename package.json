@@ -4,7 +4,23 @@
   "description": "Calendar component",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm run test"
+    "dev": "cross-env ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "e2e": "cross-env testcafe all tests/e2e/*.test.js --app \"NODE_ENV=e2e ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --port=8082\" --app-init-delay 10000",
+    "production": "cross-env NODE_ENV=production webpack"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.1",
+    "fullcalendar": "^3.8.0",
+    "lodash": "^4.17.4",
+    "testcafe": "^0.18.6",
+    "vue": "^2.5.13",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   },
   "author": "RebelCode",
   "license": "ISC"

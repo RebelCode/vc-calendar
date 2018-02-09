@@ -34,7 +34,7 @@ let entries = {
         entry: "./src/index.js",
         output: {
             path: __dirname + "/dist",
-            filename: "vc-calender.js",
+            filename: "vc-calendar.js",
             libraryTarget: 'umd'
         },
         resolve: {

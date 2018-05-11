@@ -1,4 +1,20 @@
-export function CfFullCalendar (Vue, $, defaultsDeep) {
+export function CfFullCalendar (Vue, $, defaultsDeep, eventsPropertyName = 'events') {
+    const watch = {
+        eventSources: {
+          deep: true,
+          handler (val) {
+              this.$emit('rebuild-sources')
+          },
+        },
+    }
+    watch[eventsPropertyName] = {
+        deep: true,
+        handler (val) {
+            $(this.$el).fullCalendar('removeEvents')
+            $(this.$el).fullCalendar('addEventSource', this[eventsPropertyName])
+        },
+    }
+
     return Vue.extend({
         props: {
             events: {
@@ -63,17 +79,17 @@ export function CfFullCalendar (Vue, $, defaultsDeep) {
                     selectHelper: this.selectHelper,
                     aspectRatio: 2,
                     timeFormat: 'HH:mm',
-                    events: this.events,
+                    events: this[eventsPropertyName],
                     eventSources: this.eventSources,
                     eventRender(...args) {
                         if (this.sync) {
-                            self.events = cal.fullCalendar('clientEvents')
+                            self[eventsPropertyName] = cal.fullCalendar('clientEvents')
                         }
                         self.$emit('event-render', ...args)
                     },
                     eventDestroy(event) {
                         if (this.sync) {
-                            self.events = cal.fullCalendar('clientEvents')
+                            self[eventsPropertyName] = cal.fullCalendar('clientEvents')
                         }
                     },
                     eventClick(...args) {
@@ -135,21 +151,7 @@ export function CfFullCalendar (Vue, $, defaultsDeep) {
                 return $(this.$el).fullCalendar(...options)
             },
         },
-        watch: {
-            events: {
-                deep: true,
-                handler (val) {
-                    $(this.$el).fullCalendar('removeEvents')
-                    $(this.$el).fullCalendar('addEventSource', this.events)
-                },
-            },
-            eventSources: {
-                deep: true,
-                handler(val) {
-                    this.$emit('rebuild-sources')
-                },
-            },
-        },
+        watch,
         beforeDestroy() {
             this.$off('remove-event')
             this.$off('rerender-events')
